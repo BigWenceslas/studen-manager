@@ -69,7 +69,7 @@
                             </svg>
                             <!--end::Svg Icon-->
                         </span>
-                        @if (auth()->user()->roles()->pluck('name')[0] != "Etudiant")
+                        @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
                             <span class="menu-text">@lang('Users Management')</span>
                         @else
                             <span class="menu-text">@lang('User')</span>
@@ -81,14 +81,14 @@
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link">
-                                    @if (auth()->user()->roles()->pluck('name')[0] != "Etudiant")
+                                    @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
                                         <span class="menu-text">@lang('Users Management')</span>
                                     @else
                                         <span class="menu-text">@lang('User')</span>
                                     @endif
                                 </span>
                             </li>
-                            @if (auth()->user()->roles()->pluck('name')[0] != "Etudiant")
+                            @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <i class="menu-bullet menu-bullet-line">
@@ -164,7 +164,7 @@
                     </div>
                 </li>
 
-                @if (auth()->user()->roles()->pluck('name')[0] != "Etudiant")
+                @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
 
                     <li class="menu-item menu-item-@if(Str::startsWith($route, 'permissions'))active @endif" aria-haspopup="true">
                         <a href="{{route('permissions.index')}}" class="menu-link">
