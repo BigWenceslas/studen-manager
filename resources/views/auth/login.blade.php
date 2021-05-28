@@ -6,7 +6,7 @@
 
     <div class="login-signin">
         <div class="mb-20">
-            <h3 class="opacity-40 font-weight-normal">@lang('Sign In To Admin')</h3>
+            <h3 class="opacity-40 font-weight-normal">Connectez-vous</h3>
             <p class="opacity-40">@lang('Enter your details to login to your account:')</p>
         </div>
 
@@ -44,17 +44,17 @@
                     <span></span>@lang('Remember me')</label>
                 </div>
 
-                <a href="javascript:;" class="ml-5 text-white font-weight-bold">@lang('Forgot your password?')</a>
+                {{-- <a href="javascript:;" class="ml-5 text-white font-weight-bold">@lang('Forgot your password?')</a> --}}
             </div>
             <div class="form-group text-center mt-10">
-                <button  class="btn btn-pill btn-primary opacity-90 px-15 py-3" type="submit">@lang('Sign In To Admin')</button>
+                <button  class="btn btn-pill btn-primary opacity-90 px-15 py-3" type="submit">Connectez-vous</button>
             </div>
         </form>
 
 
         <div class="mt-10">
-            <span class="opacity-40 mr-4">@lang("Don't have an account yet?")</span>
-            <a href="{{route('register')}}" id="kt_login_signup" class="text-white opacity-30 font-weight-normal">@lang('Sign Up')</a>
+            <span class="opacity-40 mr-4">Retourner à </span>
+            <a href="{{route('home')}}" id="kt_login_signup" class="text-white opacity-30 font-weight-normal"><i class="fa fa-home"></i> l'accueil</a>
         </div>
     </div>
     <!--end::Login Sign in form-->

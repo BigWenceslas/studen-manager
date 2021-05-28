@@ -42,6 +42,20 @@ class NavigationController extends Controller
         return view('admin.profil.password', compact('user'));
     }
 
+    public function paiement()
+    {
+        $user = User::all();
+        $roles = Role::all();
+        return view('admin.paiement.index', compact('user','roles'));
+    }
+
+    public function makePayment()
+    {
+        $user = User::all();
+        $roles = Role::all();
+        return view('admin.paiement.add', compact('user','roles'));
+    }
+
     /**
      * Show the application dashboard.
      *

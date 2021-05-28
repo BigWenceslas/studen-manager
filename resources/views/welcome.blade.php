@@ -2,51 +2,18 @@
 
 @section('content')
 
-<div class="banner" id="banner">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item item-bg active">
-                <img class="d-block w-100 h-100" src="img/couverture.jpg" alt="banner">
-                <img class="d-block w-100 h-100" src="img/couverture1.jpg" alt="banner">
-                <div class="carousel-caption banner-slider-inner d-flex h-100">
-                    <div class="carousel-content container">
-                        <div class="banner-inner mt-60">
-                            <div class="text-center">
-                                <h3 class="b-text">ENSET.StudJob</h3>
-                                <p class="p-text"> Access  talents</p>
-                                <div class="inline-search-area ml-auto mr-auto isa-3">
-                                    <div class="search-boxs">
-                                        <div class="search-col">
-                                            <input type="text" name="search" class="form-control has-icon b-radius" placeholder="Job title or Keywords">
-                                        </div>
-                                        <div class="search-col">
-                                            <select class="selectpicker search-fields" name="location">
-                                                <option>Location</option>
-                                                <option>New York</option>
-                                                <option>Australian</option>
-                                                <option>Canada</option>
-                                                <option>London</option>
-                                            </select>
-                                        </div>
-                                        <div class="find">
-                                            <button class="btn button-theme btn-search btn-block b-radius">
-                                                <i class="fa fa-search"></i><strong>Find Job</strong>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="banner" id="banner" style="margin-top: 10rem;display:flex;flex-direction:column;justify-content:center;">
+    <div class="enset-image">
+        <img src="https://pbs.twimg.com/media/EAt45XdW4AUUj7x.jpg" alt="logo" style="height: 370px;width:100%;object-fit:contain;">
+    </div>
+    <div style="margin-top:5rem;display:flex;justify-content:center;">
+        <p style="text-align: center;color:black;width:70%;"> <strong>L'École Normale Supérieure de l'Enseignement Technique (ENSET)</strong> est une Grande école camerounaise de l'Université de Douala. La mission essentielle de cette institution est d'assurer La formation initiale des professeurs de l’enseignement secondaire technique ; la promotion de la recherche scientifique, technologique et pédagogique ainsi que la valorisation des résultats ; l’appui au développement ; le recyclage et le perfectionnement du personnel enseignant, y compris des professeurs nommés aux fonctions d’inspecteur de l’enseignement secondaire technique. Toutefois, sur la demande des milieux socioprofessionnels, en particulier du secteur privé soucieux de bénéficier de l’expertise de l’établissement, l’ENSET s’est également lancée dans les formations professionnalisante en direction des agents de maîtrise et cadres des entreprises depuis l’année académique</p>
     </div>
 </div>
 <!-- banner end -->
 
 <!-- Popular categories strat -->
-<div class="popular-categories content-area-7 bg-grea">
+{{-- <div class="popular-categories content-area-7 bg-grea">
     <div class="container">
         <!-- Main title -->
         <div class="main-title text-center">
@@ -522,7 +489,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 @endsection
 

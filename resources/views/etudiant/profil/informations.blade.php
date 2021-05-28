@@ -70,21 +70,13 @@
 <!--begin::Page Heading-->
 <div class="d-flex align-items-baseline flex-wrap mr-5">
     <!--begin::Page Title-->
-    <h5 class="text-dark font-weight-bold my-1 mr-5">
-        @if (auth()->user()->roles()->pluck('name')[0] != "Etudiant")
-            <a href="{{route('users.index')}}" >@lang('Users Management')</a>
-        @else
-            <a href="{{route('profil',['id'=>auth()->user()->id])}}">@lang('Profil')</a>
-        @endif
-    </h5>
+    <h5 class="text-dark font-weight-bold my-1 mr-5"><a href="{{route('users.index')}}" >@lang('Users Management')</a></h5>
     <!--end::Page Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-        @if (auth()->user()->roles()->pluck('name')[0] != "Etudiant")
-            <li class="breadcrumb-item text-muted">
-                <a href="{{route('profil',['id'=>auth()->user()->id])}}" class="text-muted">@lang('Profil')</a>
-            </li>
-        @endif
+        <li class="breadcrumb-item text-muted">
+            <a href="{{route('profil',['id'=>auth()->user()->id])}}" class="text-muted">@lang('Profil')</a>
+        </li>
         <li class="breadcrumb-item text-muted">
             <div class="text-muted">@lang('Personal Information')</div>
         </li>

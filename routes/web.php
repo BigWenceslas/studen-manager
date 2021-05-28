@@ -7,6 +7,7 @@ use \App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EtudiantController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -33,15 +34,19 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/login6', function() {
-    return view('auth.authlayout');
-});
+Route::get('/login', function() {
+    return view('auth.login');
+})->name('login');
 
 Route::get('language/{locale}',  [LocalizationController::class,'lang'])->name('langue');
 
 Route::resource('users', UsersController::class)->middleware('auth');
 
 Route::delete('users_mass_destroy', [UsersController::class,'massDestroy'])->name('users.mass_destroy');
+
+// Paiement
+Route::get('paiement',[NavigationController::class,'paiement'])->name('paiement');
+Route::get('paiement-make',[NavigationController::class,'makePayment'])->name('paiement-make');
 
 Route::get('profil/{id}',[NavigationController::class,'profile'])->name('profil');
 
@@ -50,6 +55,7 @@ Route::get('profilinformation/{id}',[NavigationController::class,'profileinforma
 Route::get('updatepassword/{id}',[NavigationController::class,'updatepassword'])->name('updatepassword');
 
 Route::post('postupdatepassword',[NavigationController::class,'store'])->name('postupdatepassword');
+// Route::post('login-custom',[NavigationController::class,'login'])->name('login-custom');
 
 Route::resource('permissions', PermissionsController::class)->middleware('auth');
 Route::delete('permissions_mass_destroy', [PermissionsController::class,'massDestroy'])->name('permissions.mass_destroy');
@@ -57,6 +63,10 @@ Route::delete('permissions_mass_destroy', [PermissionsController::class,'massDes
 Route::resource('roles', RolesController::class);
 
 Route::delete('roles_mass_destroy', [RolesController::class,'massDestroy'])->name('roles.mass_destroy');
+
+// Etudiant
+
+Route::get('etudiant',[EtudiantController::class,'index'])->name('etudiant');
 
 
 

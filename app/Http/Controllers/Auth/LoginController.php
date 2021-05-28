@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
@@ -55,11 +56,20 @@ class LoginController extends Controller
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);
         if($request->ajax()){
+            // dd(User::find($this->guard()->user()->id)->roles()->pluck('name')->toArray());
+            // dd(in_array($this->guard()->user()->id, User::find($this->guard()->user()->id)->roles()->pluck('name')->toArray()));
             // If request from AJAX
-            return [
-                'success' => true,
-                'redirect' => $this->redirectPath() ?: route('home'),
-            ];
+            // if (User::find($this->guard()->user()->id)->roles()->pluck('name')->toArray()[0] == "Etudiant") {
+            //     return [
+            //         'success' => true,
+            //         'redirect' => route('etudiant'),
+            //     ];
+            // } else {
+                return [
+                    'success' => true,
+                    'redirect' => $this->redirectPath() ?: route('home'),
+                ];
+            // }
         } else {
             // Normal POST do redirect
             return $this->authenticated($request, $this->guard()->user())

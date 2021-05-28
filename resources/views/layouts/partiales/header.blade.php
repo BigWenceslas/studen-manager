@@ -2,8 +2,8 @@
 <header class="main-header header-transparent sticky-header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand logo" href="index.html">
-                <img src="img/logos/logo.png" alt="logo">
+            <a class="navbar-brand logo" href="{{ route('home') }}">
+                <img src="{{asset('LogoEnset.jpg')}}" alt="logo" style="height: 50px;width:100%;object-fit:contain;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa fa-bars"></span>
@@ -11,18 +11,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav header-ml">
                     <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Index
+                        <a class="nav-link dropdown-toggle" href="{{ route('home') }}" style="color:#7877f7">
+                            Accueil
                         </a>
-                        <ul class="dropdown-menu dm-2" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="index.html">Index 01</a></li>
+                        {{-- <ul class="dropdown-menu dm-2" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/">Index 01</a></li>
                             <li><a class="dropdown-item" href="index-2.html">Index 02</a></li>
                             <li><a class="dropdown-item" href="index-3.html">Index 03</a></li>
                             <li><a class="dropdown-item" href="index-4.html">Index 04</a></li>
                             <li><a class="dropdown-item" href="index-5.html">Index 05</a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Candidates
                         </a>
@@ -123,11 +123,11 @@
                             <li><a class="dropdown-item" href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
                             <li><a class="dropdown-item" href="blog-details.html">Blog Details</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ni-2">
-                        <a class="nav-link" href="login.html">
+                    {{-- <li class="nav-item ni-2">
+                        <a class="nav-link" href="{{ route('home') }}">
                             Login
                         </a>
                     </li>
@@ -135,14 +135,14 @@
                         <a class="nav-link deffold" href="#">
                             /
                         </a>
-                    </li>
-                    <li class="nav-item ni-2">
+                    </li> --}}
+                    {{-- <li class="nav-item ni-2">
                         <a class="nav-link" href="signup.html">
                             Register
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-color"><i class="flaticon-plus"></i> Post a Jobs</a>
+                    </li> --}}
+                    <li class="nav-item active">
+                        <a href="{{ route('login') }}" class="nav-link link-color" style="background-color: #7877f7;"><i class="flaticon-user"></i> Login</a>
                     </li>
                 </ul>
             </div>

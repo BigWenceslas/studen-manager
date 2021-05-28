@@ -64,19 +64,19 @@ $(function () {
                     $('.sticky-header').addClass('header-shrink');
                 }
                 if($('.do-sticky').length < 1) {
-                    $('.logo img').attr('src', 'img/logos/black-logo.png');
+                    $('.logo img').attr('src', 'LogoEnset.jpg');
                 }
             }
             else {
                 $('.sticky-header').removeClass('header-shrink');
                 if($('.do-sticky').length < 1 && $('.fixed-header').length == 0 && $('.fixed-header2').length == 0) {
-                    $('.logo img').attr('src', 'img/logos/logo.png');
+                    $('.logo img').attr('src', 'LogoEnset.jpg');
                 } else {
-                    $('.logo img').attr('src', 'img/logos/logo.png');
+                    $('.logo img').attr('src', 'LogoEnset.jpg');
                 }
             }
         } else {
-            $('.logo img').attr('src', 'img/logos/black-logo.png');
+            $('.logo img').attr('src', 'LogoEnset.jpg');
         }
     }
 
@@ -411,25 +411,25 @@ $(function () {
 
     // Switching Color schema
     function populateColorPlates() {
-        var plateStings = '<div class="option-panel option-panel-collased">\n' +
-            '    <h2>Change Color</h2>\n' +
-            '    <div class="color-plate default-plate" data-color="default"></div>\n' +
-            '    <div class="color-plate midnight-blue-plate" data-color="midnight-blue"></div>\n' +
-            '    <div class="color-plate yellow-plate" data-color="yellow"></div>\n' +
-            '    <div class="color-plate blue-plate" data-color="blue"></div>\n' +
-            '    <div class="color-plate green-light-plate" data-color="green-light"></div>\n' +
-            '    <div class="color-plate yellow-light-plate" data-color="yellow-light"></div>\n' +
-            '    <div class="color-plate green-plate" data-color="green"></div>\n' +
-            '    <div class="color-plate green-light-2-plate" data-color="green-light-2"></div>\n' +
-            '    <div class="color-plate red-plate" data-color="red"></div>\n' +
-            '    <div class="color-plate purple-plate" data-color="purple"></div>\n' +
-            '    <div class="color-plate brown-plate" data-color="brown"></div>\n' +
-            '    <div class="color-plate olive-plate" data-color="olive"></div>\n' +
-            '    <div class="setting-button">\n' +
-            '        <i class="fa fa-gear"></i>\n' +
-            '    </div>\n' +
-            '</div>';
-        $('body').append(plateStings);
+        // var plateStings = '<div class="option-panel option-panel-collased">\n' +
+        //     '    <h2>Change Color</h2>\n' +
+        //     '    <div class="color-plate default-plate" data-color="default"></div>\n' +
+        //     '    <div class="color-plate midnight-blue-plate" data-color="midnight-blue"></div>\n' +
+        //     '    <div class="color-plate yellow-plate" data-color="yellow"></div>\n' +
+        //     '    <div class="color-plate blue-plate" data-color="blue"></div>\n' +
+        //     '    <div class="color-plate green-light-plate" data-color="green-light"></div>\n' +
+        //     '    <div class="color-plate yellow-light-plate" data-color="yellow-light"></div>\n' +
+        //     '    <div class="color-plate green-plate" data-color="green"></div>\n' +
+        //     '    <div class="color-plate green-light-2-plate" data-color="green-light-2"></div>\n' +
+        //     '    <div class="color-plate red-plate" data-color="red"></div>\n' +
+        //     '    <div class="color-plate purple-plate" data-color="purple"></div>\n' +
+        //     '    <div class="color-plate brown-plate" data-color="brown"></div>\n' +
+        //     '    <div class="color-plate olive-plate" data-color="olive"></div>\n' +
+        //     '    <div class="setting-button">\n' +
+        //     '        <i class="fa fa-gear"></i>\n' +
+        //     '    </div>\n' +
+        //     '</div>';
+        // $('body').append(plateStings);
     }
     $(document).on('click', '.color-plate', function () {
         var name = $(this).attr('data-color');
