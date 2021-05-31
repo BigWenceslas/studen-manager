@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Paiement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Rules\MatchOldPassword;
@@ -44,16 +45,8 @@ class NavigationController extends Controller
 
     public function paiement()
     {
-        $user = User::all();
-        $roles = Role::all();
-        return view('admin.paiement.index', compact('user','roles'));
-    }
-
-    public function makePayment()
-    {
-        $user = User::all();
-        $roles = Role::all();
-        return view('admin.paiement.add', compact('user','roles'));
+        $paiements = Paiement::with("user");
+        return view('admin.paiement.index', compact('paiements'));
     }
 
     /**

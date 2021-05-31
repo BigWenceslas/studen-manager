@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\Admin\PaiementController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,8 @@ Route::delete('users_mass_destroy', [UsersController::class,'massDestroy'])->nam
 
 // Paiement
 Route::get('paiement',[NavigationController::class,'paiement'])->name('paiement');
-Route::get('paiement-make',[NavigationController::class,'makePayment'])->name('paiement-make');
+Route::get('paiement-make',[PaiementController::class,'index'])->name('paiement-make');
+Route::post('paiement-add',[PaiementController::class,'store'])->name('paiement.add');
 
 Route::get('profil/{id}',[NavigationController::class,'profile'])->name('profil');
 

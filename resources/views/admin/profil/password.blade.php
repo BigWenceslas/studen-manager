@@ -167,7 +167,7 @@
     <div class="d-flex align-items-baseline flex-wrap mr-5">
         <!--begin::Page Title-->
         <h5 class="text-dark font-weight-bold my-1 mr-5">
-            @if (auth()->user()->roles()->pluck('name')[0] != "Etudiant")
+            @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
                 <a href="{{route('users.index')}}" >@lang('Users Management')</a>
             @else
                 <a href="{{route('profil',['id'=>auth()->user()->id])}}">@lang('Profil')</a>
@@ -176,7 +176,7 @@
         <!--end::Page Title-->
         <!--begin::Breadcrumb-->
         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-            @if (auth()->user()->roles()->pluck('name')[0] != "Etudiant")
+            @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
                 <li class="breadcrumb-item text-muted">
                     <a href="{{route('profil',['id'=>auth()->user()->id])}}" class="text-muted">@lang('Profil')</a>
                 </li>

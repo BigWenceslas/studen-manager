@@ -16,7 +16,44 @@
                     <div class="card card-custom card-stretch">
                         <!--begin::Body-->
                         <div class="card-body">
-                            <h3>Sélectionner une option de paiement</h3>
+                            <h3>Remplir le formulaire pour payer</h3>
+                            <div class="row" style="margin: 2rem;">
+                                @csrf
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tranche_1">Tranche 1</label>
+                                        <input type="text" name="tranche_1" id="tranche_1" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="date_paiement_tranche_1">Date de paiement tranche 1</label>
+                                        <input type="date" name="date_paiement_tranche_1" id="date_paiement_tranche_1" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tranche_2">Tranche 2</label>
+                                        <input type="text" name="tranche_2" id="tranche_2" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="date_paiement_tranche_2">Date de paiement tranche 2</label>
+                                        <input type="date" name="date_paiement_tranche_2" id="date_paiement_tranche_2" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="annee_academique">Année académique</label>
+                                        <input type="text" name="annee_academique" id="annee_academique" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex;justify-content: center;
+                            align-items: center;">
+                                <h4>Sélectionner une méthode de paiement</h4>
+                            </div>
                             <div style="display: flex;justify-content: center;
                             align-items: center;margin-top:4rem;">
                                 <div id="paypal-button-container" style="    display: flex;
@@ -59,10 +96,28 @@
 @endsection
 
 @section('title')
-    {{ config('app.name') }} | @lang('Users Management') | @lang('Profil') | @lang('Overview')
+    {{ config('app.name') }} | @lang('Paiement')
 @endsection
 
+{{-- Stephane - Black Panther 14 h 40
+Bank Account
+Account Number:
+FR7012345282745948124315212
+Routing Number:
+1234528274
+Credit Card
+Credit Card Number:
+4020024389820257
+Credit Card Type:
+VISA
+Expiration Date:
+05/2026
+PayPal
+Balance:
+5000.00 EUR --}}
+
 @section('Page Scripts')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
     <script>
         $(document).ready(function() {
@@ -78,35 +133,51 @@
                 createOrder: function (data, actions) {
                     return actions.order.create({
                     purchase_units: [
-                        { amount: { currency_code: "EUR", value: 500 } },
+                        { amount: { currency_code: "EUR", value: 5 } },
                     ],
                     });
                 },
                 onApprove: function (data, actions) {
                     return actions.order.capture().then(async function (details) {
-                    var data = new FormData();
-                    // data.append("pack", selff.pack_id);
-                    // data.append("user_id", selff.user._id);
-                    // data.append("statut", "Payé");
-                    // data.append("cmd", "1234cmdTEst");
-                    // data.append("verify", "non");
-                    // data.append("duree", date_added);
-                    // data.append("lang", selff.$i18n.locale);
-                    // const result = await selff.$store.dispatch(
-                    //     "ecole/payerPack",
-                    //     data
-                    // );
-                    // if (result) {
-                    //     $('#modalpay').modal('hide');
-                    //     $('#modalpay').removeClass('show');
-                    //     await selff.$store.dispatch('auth/setAuthEcole', result.data);
-                    //     if (selff.user.approved == 'on') {
-                    //     window.location.href = "/dashboard/ecole/commande";
-                    //     }
-                    // }
+                        var data = new FormData();
+                        data.append("tranche_1", $('#tranche_1').val());
+                        data.append("date_paiement_tranche_1", $('#date_paiement_tranche_1').val());
+                        data.append("tranche_2", $('#tranche_2').val());
+                        data.append("date_paiement_tranche_2", $('#date_paiement_tranche_2').val());
+                        data.append("annee_academique", $('#annee_academique').val());
+                        data.append("user_id", "{{ auth()->user()->id }}");
+                        data.append("_token", $('input[name="_token"]').val());
+                        $.ajax({
+                            url: "{{ route('paiement.add') }}",
+                            type: 'POST',
+                            processData: false,
+                            contentType: false,
+                            data: data,
+                            success: function(data) {
+                                swal(
+                                    'Succès !',
+                                    'Paiement exécuté avec succès !',
+                                    'success'
+                                );
+                                window.location.href = "{{ route('paiement') }}";
+                            },
+                            error: function(error) {
+                                swal(
+                                    'Erreur !',
+                                    'Une erreur est survenue, veuillez reessayer plutard !',
+                                    'error'
+                                );
+                                console.log(error);
+                            }
+                        })
                     });
                 },
                 onError: function (err) {
+                    swal(
+                        'Erreur !',
+                        'Une erreur est survenue, veuillez reessayer plutard !',
+                        'error'
+                    );
                     console.log(err);
                 },
                 })

@@ -59,7 +59,7 @@ class LoginController extends Controller
             // dd(User::find($this->guard()->user()->id)->roles()->pluck('name')->toArray());
             // dd(in_array($this->guard()->user()->id, User::find($this->guard()->user()->id)->roles()->pluck('name')->toArray()));
             // If request from AJAX
-            // if (User::find($this->guard()->user()->id)->roles()->pluck('name')->toArray()[0] == "Etudiant") {
+            // if (User::find($this->guard()->user()->id)->roles()->pluck('name')->toArray()[0] == "etudiant") {
             //     return [
             //         'success' => true,
             //         'redirect' => route('etudiant'),
