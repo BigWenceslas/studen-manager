@@ -12,8 +12,6 @@ use App\Models\Paiement;
 
 class PaiementController extends Controller
 {
-
-
     public function __construct()
     {
         $this->middleware('auth');

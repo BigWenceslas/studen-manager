@@ -9,6 +9,8 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\PaiementController;
+use App\Http\Controllers\NiveauxController;
+use App\Http\Controllers\FilieresController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +51,18 @@ Route::delete('users_mass_destroy', [UsersController::class,'massDestroy'])->nam
 Route::get('paiement',[NavigationController::class,'paiement'])->name('paiement');
 Route::get('paiement-make',[PaiementController::class,'index'])->name('paiement-make');
 Route::post('paiement-add',[PaiementController::class,'store'])->name('paiement.add');
+
+// Filieres
+Route::get('filieres',[FilieresController::class,'filieres'])->name('filieres');
+Route::get('filieres-make',[FilieresController::class,'index'])->name('filieres-make');
+Route::post('filieres-add',[FilieresController::class,'store'])->name('filieres-add');
+Route::delete('filieres-delete',[FilieresController::class,'delete'])->name('filieres-delete');
+
+// Niveaux
+Route::get('niveaux',[NiveauxController::class,'niveaux'])->name('niveaux');
+Route::get('niveaux-make',[NiveauxController::class,'index'])->name('niveaux-make');
+Route::post('niveaux-add',[NiveauxController::class,'store'])->name('niveaux-add');
+Route::delete('niveaux-delete',[NiveauxController::class,'delete'])->name('niveaux-delete');
 
 Route::get('profil/{id}',[NavigationController::class,'profile'])->name('profil');
 
