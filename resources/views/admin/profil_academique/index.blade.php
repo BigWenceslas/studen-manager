@@ -1,7 +1,7 @@
 @extends('admin.adminlayout')
 
 @section('title')
-    {{ config('app.name') }} | @lang('Paiement list')
+    {{ config('app.name') }} | Liste des profils académiques
 @endsection
 
 
@@ -35,28 +35,30 @@
                 <div class="card card-custom">
                     <div class="card-header flex-wrap py-5">
                         <div class="card-title">
-                            <h3 class="card-label">@lang('Paiement list')
+                            <h3 class="card-label">Liste des profils académiques
 
                             </h3>
                         </div>
                         <div class="card-toolbar">
-                            <!--begin::Button-->
-                            <a href="{{ route('paiement-make') }}" class="btn btn-primary font-weight-bolder">
-                                <span class="svg-icon svg-icon-md">
-                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect x="0" y="0" width="24" height="24" />
-                                            <circle fill="#000000" cx="9" cy="15" r="6" />
-                                            <path
-                                                d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z"
-                                                fill="#000000" opacity="0.3" />
-                                        </g>
-                                    </svg>
-                                    <!--end::Svg Icon-->
-                                </span>@lang('Add')</a>
-                            <!--end::Button-->
+                            @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
+                                <!--begin::Button-->
+                                <a href="{{ route('profil-academique-make') }}" class="btn btn-primary font-weight-bolder">
+                                    <span class="svg-icon svg-icon-md">
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                <path
+                                                    d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z"
+                                                    fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>@lang('Add')</a>
+                                <!--end::Button-->
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -68,40 +70,40 @@
                                         <th width="10">
 
                                         </th>
-                                        <th>@lang('name')</th>
-                                        <th>Tranche 1</th>
-                                        <th>Date paiement tranche 1</th>
-                                        <th>Tranche 2</th>
-                                        <th>Date paiement tranche 2</th>
-                                        <th>Année académique</th>
+                                        <th>@lang('Name')</th>
+                                        <th>Code UE</th>
+                                        <th>Intitule UE</th>
+                                        <th>Code EC</th>
+                                        <th>Intitule EC</th>
+                                        <th>Code Etape</th>
+                                        <th>Intitule Etape</th>
+                                        <th>Note CC</th>
+                                        <th>Note Examen</th>
+                                        <th>Moyenne</th>
+                                        <th>Session</th>
+                                        <th>Décision</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($paiements as $paiement)
-                                        <tr data-entry-id="{{ $paiement->id }}">
+                                    @foreach ($profils as $profil)
+                                        <tr data-entry-id="{{ $profil->id }}">
                                             <td></td>
-                                            <td>{{ $paiement->user->name }}</td>
-                                            <td>
-                                                <span style="padding: 4px;background: {{ $paiement->tranche_1 == 'Oui' ? '#1bc5bd' : '#f64e60' }};border-radius: 10px;color: white;">
-                                                    {{ $paiement->tranche_1 == 'Oui' ? 'Oui' : 'Non' }}
-                                                </span> 
-                                            </td>
-                                            <td>{{ $paiement->date_paiement_tranche_1 }}</td>
-                                            <td>
-                                                <span style="padding: 4px;background: {{ $paiement->tranche_2 == 'Oui' ? '#1bc5bd' : '#f64e60' }};border-radius: 10px;color: white;">
-                                                    {{ $paiement->tranche_2 == 'Oui' ? 'Oui' : 'Non' }}
-                                                </span> 
-                                            </td>
-                                            <td>{{ $paiement->date_paiement_tranche_2 }}</td>
-                                            <td>{{ $paiement->annee_academique }}</td>
-                                            <td>
-                                                @if ($paiement->tranche_1 == 'Oui' && $paiement->tranche_2 == 'Oui')
-                                                    <span style="padding: 4px;background: #1bc5bd;border-radius: 10px;color: white;">
-                                                        Soldé <i class="fa fa-check" style="font-size: 9px;color: white;"></i>
-                                                    </span> 
-                                                @else    
-                                                    <a href="{{ route('paiement.edit', ['id' => $paiement->id]) }}"
+                                            <td>{{ $profil->user->name }}</td>
+                                            <td>{{ $profil->code_ue }}</td>
+                                            <td>{{ $profil->intitule_ue }}</td>
+                                            <td>{{ $profil->code_ec }}</td>
+                                            <td>{{ $profil->intitule_ec }}</td>
+                                            <td>{{ $profil->code_etape }}</td>
+                                            <td>{{ $profil->intitule_etape }}</td>
+                                            <td>{{ $profil->note_cc }}</td>
+                                            <td>{{ $profil->note_ex }}</td>
+                                            <td>{{ $profil->moyenne }}</td>
+                                            <td>{{ $profil->session }}</td>
+                                            <td>{{ $profil->decision }}</td>
+                                            <td>   
+                                                @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
+                                                    <a href="{{ route('profil-academique.edit', ['id' => $profil->id]) }}"
                                                         class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">
                                                         <span class="svg-icon svg-icon-success svg-icon-md"> <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -120,6 +122,30 @@
                                                                 </g>
                                                             </svg> </span>
                                                     </a>
+                                                    <form method="POST" style="display: inline-block"
+                                                    action="{{ route('profil-academique.destroy', ['id' => $profil->id]) }}"
+                                                    accept-charset="UTF-8" class="delete">
+                                                    @method("DELETE")
+                                                    @csrf
+
+                                                    <a href="#" class="btn btn-sm btn-clean btn-icon  delete"
+                                                        title="Delete"> <span
+                                                            class="svg-icon svg-icon-danger svg-icon-md"> <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                                height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none"
+                                                                    fill-rule="evenodd">
+                                                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                                                    <path
+                                                                        d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
+                                                                        fill="#000000" fill-rule="nonzero"></path>
+                                                                    <path
+                                                                        d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                                                        fill="#000000" opacity="0.3"></path>
+                                                                </g>
+                                                            </svg> </span> </a>
+                                                </form>
                                                 @endif
                                             </td>
                                         </tr>

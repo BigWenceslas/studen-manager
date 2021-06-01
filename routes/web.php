@@ -9,6 +9,7 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\PaiementController;
+use App\Http\Controllers\Admin\ProfilAcademiqueController;
 use App\Http\Controllers\NiveauxController;
 use App\Http\Controllers\FilieresController;
 use Illuminate\Support\Facades\App;
@@ -49,8 +50,16 @@ Route::delete('users_mass_destroy', [UsersController::class,'massDestroy'])->nam
 
 // Paiement
 Route::get('paiement',[NavigationController::class,'paiement'])->name('paiement');
+Route::get('paiement/{id}',[NavigationController::class,'paiementEdit'])->name('paiement.edit');
 Route::get('paiement-make',[PaiementController::class,'index'])->name('paiement-make');
 Route::post('paiement-add',[PaiementController::class,'store'])->name('paiement.add');
+
+// Profil Academique
+Route::get('profil-academique',[NavigationController::class,'ProfilAcademique'])->name('profil-academique');
+Route::get('profil-academique/{id}',[NavigationController::class,'ProfilAcademiqueEdit'])->name('profil-academique.edit');
+Route::get('profil-academique-make',[ProfilAcademiqueController::class,'index'])->name('profil-academique-make');
+Route::post('profil-academique-add',[ProfilAcademiqueController::class,'store'])->name('profil-academique.add');
+Route::delete('profil-academique-delete/{id}',[ProfilAcademiqueController::class,'delete'])->name('profil-academique.destroy');
 
 // Filieres
 Route::get('filieres',[FilieresController::class,'filieres'])->name('filieres');

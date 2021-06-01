@@ -20,6 +20,12 @@ class Profil_academique extends Model
         'note_ex',
         'moyenne',
         'session',
-        'decision'
+        'decision',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

@@ -25,9 +25,8 @@
                                         <div class="form-group">
                                             <label for="tranche_chooser">Choisir la tranche</label>
                                             <select id="tranche_chooser" class="form-control">
-                                                <option value="Tranche 1">Tranche 1</option>
-                                                <option value="Tranche 2">Tranche 2</option>
-                                                <option value="Les 2 tranches">Les 2 tranches</option>
+                                                <option value="Tranche 1" {{ $paiement->tranche_1 == "Oui" ? "selected" : "" }}>Tranche 1</option>
+                                                <option value="Tranche 2" {{ $paiement->tranche_2 == "Oui" ? "selected" : "" }}>Tranche 2</option>
                                             </select>
                                         </div>
                                     </div>
@@ -35,11 +34,11 @@
                                         <div class="form-group">
                                             <label for="annee_academique">Année académique</label>
                                             <select name="annee_academique" id="annee_academique" class="form-control">
-                                                <option value="2021 - 2022">2021 - 2022</option>
-                                                <option value="2020 - 2021">2020 - 2021</option>
-                                                <option value="2019 - 2020">2019 - 2020</option>
-                                                <option value="2018 - 2019">2018 - 2019</option>
-                                                <option value="2017 - 2018">2017 - 2018</option>
+                                                <option value="2021 - 2022" {{ $paiement->annee_academique == "2021 - 2022" ? "selected" : "" }}>2021 - 2022</option>
+                                                <option value="2020 - 2021" {{ $paiement->annee_academique == "2020 - 2021" ? "selected" : "" }}>2020 - 2021</option>
+                                                <option value="2019 - 2020" {{ $paiement->annee_academique == "2019 - 2020" ? "selected" : "" }}>2019 - 2020</option>
+                                                <option value="2018 - 2019" {{ $paiement->annee_academique == "2018 - 2019" ? "selected" : "" }}>2018 - 2019</option>
+                                                <option value="2017 - 2018" {{ $paiement->annee_academique == "2017 - 2018" ? "selected" : "" }}>2017 - 2018</option>
                                             </select>
                                         </div>
                                     </div>
@@ -82,7 +81,7 @@
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
         <li class="breadcrumb-item text-muted">
-            <div class="text-muted">@lang('Add')</div>
+            <div class="text-muted">@lang('Edit')</div>
         </li>
     </ul>
     <!--end::Breadcrumb-->
@@ -92,6 +91,7 @@
 
 @section('title')
     {{ config('app.name') }} | @lang('Paiement')
+@endsection
 
 @section('Page Scripts')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
