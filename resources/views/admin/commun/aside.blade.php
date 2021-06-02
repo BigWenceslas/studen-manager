@@ -344,14 +344,16 @@
                                     <span class="menu-text">@lang('List')</span>
                                 </a>
                             </li>
-                            <li class="menu-item" aria-haspopup="true">
-                                <a href="{{route('profil-academique.add')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-line">
-                                        <span></span>
-                                    </i>
-                                    <span class="menu-text">@lang('Add')</span>
-                                </a>
-                            </li>
+                            @if (auth()->user()->roles()->pluck('name')[0] != "etudiant")
+                                <li class="menu-item" aria-haspopup="true">
+                                    <a href="{{route('profil-academique-make')}}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-line">
+                                            <span></span>
+                                        </i>
+                                        <span class="menu-text">@lang('Add')</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
