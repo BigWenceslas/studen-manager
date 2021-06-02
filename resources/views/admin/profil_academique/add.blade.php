@@ -3,7 +3,6 @@
 @section('Content')
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
@@ -92,9 +91,9 @@
                                             <label for="tranche_chooser">Etudiant</label>
                                             <select name="user_id" id="user_id" class="form-control">
                                                 @foreach ($users as $user)
-                                                    @if ($user->roles()->pluck('name')[0] == "etudiant")
-                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                    @endif
+                                                    @foreach($user->roles()->pluck('name') as $role)
+                                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    @endforeach
                                                 @endforeach
                                             </select>
                                         </div>
