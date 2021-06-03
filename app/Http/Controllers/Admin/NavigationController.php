@@ -21,7 +21,9 @@ class NavigationController extends Controller
 
     public function Dashboard()
     {
-        return view("admin.dashboard");
+        $user = User::get()->count();
+        $paiements = Paiement::get()->count();
+        return view("admin.dashboard", compact('user','paiements'));
     }
 
     public function profile($id)

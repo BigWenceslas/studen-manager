@@ -23,9 +23,7 @@
             <!--begin::Dashboard-->
             <!--begin::Row-->
             <div class="row">
-
-
-                <div class="col-lg-12 col-xxl-4">
+                <div class="col-lg-12 col-xxl-12">
                     <!--begin::Stats Widget 11-->
                     <div class="card card-custom card-stretch card-stretch-half gutter-b">
                         <!--begin::Body-->
@@ -47,8 +45,8 @@
                                     </span>
                                 </span>
                                 <div class="d-flex flex-column text-right">
-                                    <span class="text-dark-75 font-weight-bolder font-size-h3">750$</span>
-                                    <span class="text-muted font-weight-bold mt-2">Paiements du mois courant</span>
+                                    <span class="text-dark-75 font-weight-bolder font-size-h3">{{$paiements}}</span>
+                                    <span class="text-muted font-weight-bold mt-2">Nombres de paiements</span>
                                 </div>
                             </div>
                             <div id="kt_stats_widget_11_chart" class="card-rounded-bottom" data-color="success" style="height: 150px"></div>
@@ -77,8 +75,8 @@
                                     </span>
                                 </span>
                                 <div class="d-flex flex-column text-right">
-                                    <span class="text-dark-75 font-weight-bolder font-size-h3">+6,5K</span>
-                                    <span class="text-muted font-weight-bold mt-2">Etudiants</span>
+                                    <span class="text-dark-75 font-weight-bolder font-size-h3">{{$user}}</span>
+                                    <span class="text-muted font-weight-bold mt-2">Nombres d'etudiants</span>
                                 </div>
                             </div>
                             <div id="kt_stats_widget_12_chart" class="card-rounded-bottom" data-color="primary" style="height: 150px"></div>
