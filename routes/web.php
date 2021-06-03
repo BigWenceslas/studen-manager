@@ -51,7 +51,7 @@ Route::delete('users_mass_destroy', [UsersController::class,'massDestroy'])->nam
 // Paiement
 Route::get('paiement',[NavigationController::class,'paiement'])->name('paiement');
 Route::get('paiement/{id}',[NavigationController::class,'paiementEdit'])->name('paiement.edit');
-Route::get('paiement-make',[PaiementController::class,'index'])->name('paiement-make');
+Route::get('paiement-make',[PaiementController::class,'index'])->name('paiement-make')->middleware('admin');
 Route::post('paiement-add',[PaiementController::class,'store'])->name('paiement.add');
 
 // Profil Academique

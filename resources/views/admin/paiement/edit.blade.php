@@ -44,16 +44,10 @@
                                     </div>
                                 </div>
                             </form>
-                            <div style="display: flex;justify-content: center;
-                            align-items: center;">
-                                <h4>Sélectionner une méthode de paiement</h4>
-                            </div>
-                            <div style="display: flex;justify-content: center;
-                            align-items: center;margin-top:4rem;">
-                                <div id="paypal-button-container" style="    display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                width: 60%;"></div>
+                            <div class="col-md-12" style="display: flex;justify-content:center;">
+                                <button class="btn btn-primary pay_button" onclick="pay()">
+                                    Enregistrer
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -94,87 +88,58 @@
 @endsection
 
 @section('Page Scripts')
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
-    <script>
-        $(document).ready(function() {
-            function initPayPalButton() {
-            paypal
-                .Buttons({
-                style: {
-                    shape: "rect",
-                    color: "gold",
-                    layout: "vertical",
-                    label: "paypal",
-                },
-                createOrder: function (data, actions) {
-                    return actions.order.create({
-                    purchase_units: [
-                        { amount: { currency_code: "EUR", value: 5 } },
-                    ],
-                    });
-                },
-                onApprove: function (data, actions) {
-                    return actions.order.capture().then(async function (details) {
-                        var data = new FormData();
-                        var $form = $('.payment_save');
-                        var formdata = (window.FormData) ? new FormData($form[0]) : null;
-                        var data = (formdata !== null) ? formdata : $form.serialize();
-                        if($("#tranche_chooser").find(":selected").val() == "Tranche 1"){
-                            data.append("tranche_1", "Oui");
-                            data.append("date_paiement_tranche_1", "{{ date('Y-m-d H:i:s') }}");
-                            data.append("tranche_2", "");
-                            data.append("date_paiement_tranche_2", "");
-                        }else if($("#tranche_chooser").find(":selected").val() == "Tranche 2"){
-                            data.append("tranche_2", "Oui");
-                            data.append("date_paiement_tranche_2", "{{ date('Y-m-d H:i:s') }}");
-                            data.append("tranche_1", "");
-                            data.append("date_paiement_tranche_1", "");
-                        }else{
-                            data.append("tranche_2", "Oui");
-                            data.append("date_paiement_tranche_2", "{{ date('Y-m-d H:i:s') }}");
-                            data.append("tranche_1", "Oui");
-                            data.append("date_paiement_tranche_1", "{{ date('Y-m-d H:i:s') }}");
-                        }
-                        $.ajax({
-                            url: "{{ route('paiement.add') }}",
-                            type: 'POST',
-                            processData: false,
-                            contentType: false,
-                            data: data,
-                            success: function(data) {
-                                swal(
-                                    data.titre,
-                                    data.message,
-                                    data.type
-                                );
-                                window.location.href = "{{ route('paiement') }}";
-                            },
-                            error: function(error) {
-                                swal(
-                                    'Erreur !',
-                                    'Une erreur est survenue, veuillez reessayer plutard !',
-                                    'error'
-                                );
-                                console.log(error);
-                            }
-                        })
-                    });
-                },
-                onError: function (err) {
-                    swal(
-                        'Erreur !',
-                        'Une erreur est survenue, veuillez reessayer plutard !',
-                        'error'
-                    );
-                    console.log(err);
-                },
-                })
-                .render("#paypal-button-container");
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function pay(){
+        var actual_text = $('.pay_button').text();
+        $('.pay_button').html("En cours...");
+        var data = new FormData();
+        var $form = $('.payment_save');
+        var formdata = (window.FormData) ? new FormData($form[0]) : null;
+        var data = (formdata !== null) ? formdata : $form.serialize();
+        if($("#tranche_chooser").find(":selected").val() == "Tranche 1"){
+            data.append("tranche_1", "Oui");
+            data.append("date_paiement_tranche_1", "{{ date('Y-m-d H:i:s') }}");
+            data.append("tranche_2", "");
+            data.append("date_paiement_tranche_2", "");
+        }else if($("#tranche_chooser").find(":selected").val() == "Tranche 2"){
+            data.append("tranche_2", "Oui");
+            data.append("date_paiement_tranche_2", "{{ date('Y-m-d H:i:s') }}");
+            data.append("tranche_1", "");
+            data.append("date_paiement_tranche_1", "");
+        }else{
+            data.append("tranche_2", "Oui");
+            data.append("date_paiement_tranche_2", "{{ date('Y-m-d H:i:s') }}");
+            data.append("tranche_1", "Oui");
+            data.append("date_paiement_tranche_1", "{{ date('Y-m-d H:i:s') }}");
+        }
+        $.ajax({
+            url: "{{ route('paiement.add') }}",
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: data,
+            success: function(data) {
+                swal(
+                    data.titre,
+                    data.message,
+                    data.type
+                );
+                $('.pay_button').html(actual_text);
+                window.location.href = "{{ route('paiement') }}";
+            },
+            error: function(error) {
+                swal(
+                    'Erreur !',
+                    'Une erreur est survenue, veuillez reessayer plutard !',
+                    'error'
+                );
+                $('.pay_button').html(actual_text);
+                console.log(error);
             }
-            initPayPalButton();
-        });
-    </script>
+        })
+    }
+</script>
 @endsection
 
 
